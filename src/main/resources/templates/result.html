@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transfer complete</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<header><h1>✅ Transfer complete</h1></header>
+<main>
+    <section class="card">
+        <p>Reference: <strong th:text="${result.reference}">NB000000</strong></p>
+        <p>Amount: <strong th:text="${result.amount}">0</strong> · Fee: <strong th:text="${result.fee}">0</strong></p>
+        <p>New balance: <strong th:text="${result.newBalance}">0</strong></p>
+        <p class="small">Receipt signature: <code th:text="${result.receiptSignature}">sig</code></p>
+    </section>
+    <section class="card">
+        <h2>Recent transfers</h2>
+        <table>
+            <thead><tr><th>Ref</th><th>From</th><th>To</th><th>Amount</th><th>Note</th></tr></thead>
+            <tbody>
+            <tr th:each="t : ${history}">
+                <td th:text="${t.reference}">NB</td>
+                <td th:text="${t.fromAccount}">A</td>
+                <td th:text="${t.toAccount}">B</td>
+                <td th:text="${t.amount}">0</td>
+                <td th:text="${t.note}">note</td>
+            </tr>
+            </tbody>
+        </table>
+        <p><a th:href="@{/}">← New transfer</a></p>
+    </section>
+</main>
+<footer>NovaBank is fictional. Training application — intentionally insecure.</footer>
+</body>
+</html>

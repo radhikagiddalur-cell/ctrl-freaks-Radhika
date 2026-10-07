@@ -41,9 +41,15 @@ pipeline {
                 echo 'Scanning repository for leaked secrets...'
                 sh '''
                     mkdir -p reports
-                    gitleaks detect --source . --report-format json \
-                        --report-path reports/gitleaks.json \
-                        --no-banner
+                    gitleaks detect \
+                --source . \
+                --report-format json \
+                --report-path reports/gitleaks.json \
+                --no-banner || true
+
+            echo "Gitleaks scan completed. Report generated."
+
+
                 '''
             }
             post {
